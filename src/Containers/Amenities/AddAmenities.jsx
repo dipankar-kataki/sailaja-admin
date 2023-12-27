@@ -3,6 +3,7 @@ import styles from './AddAmenities.module.css'
 import { Button } from '@mui/material';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { publicURL } from '../../api/apiConfig';
 
 const AddAmenities = () => {
     const [allProjects, setAllProjects] = useState([]);
@@ -12,7 +13,7 @@ const AddAmenities = () => {
     const [project,setProject] = useState('');
 
     useEffect(()=> {
-        axios.get('http://139.59.17.6/api/project/list')
+        axios.get(`${publicURL}api/project/list`)
         .then(function (response) {
           // handle success
           setAllProjects(response.data.data);
@@ -22,7 +23,7 @@ const AddAmenities = () => {
           // handle error
           console.log(error);
         })
-        axios.get('http://139.59.17.6/api/amenity')
+        axios.get(`${publicURL}api/amenity`)
         .then(function (response) {
           // handle success
           setAmenities(response.data.data);
@@ -51,7 +52,7 @@ const AddAmenities = () => {
           setProject(e.target.value);
           // console.log(e.target.value)
           console.log(document.querySelectorAll('.amenity_list_item_check_class'))
-          axios.get(`http://139.59.17.6/api/amenity/project/${e.target.value}`)
+          axios.get(`${publicURL}api/amenity/project/${e.target.value}`)
         .then(function (response) {
           // handle success
           setFetchedAmenity(response.data.data.amenities)
@@ -84,7 +85,7 @@ const AddAmenities = () => {
       const amenityAddHandler = (e) => {
         e.preventDefault();
         
-        axios.put('http://139.59.17.6/api/amenity/add/project', {
+        axios.put(`${publicURL}api/amenity/add/project`, {
           projectId: project,
           amenityId: projectAmenity
           

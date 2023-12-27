@@ -10,6 +10,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { publicURL } from '../../api/apiConfig'
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,FilePondPluginFileValidateSize)
 
@@ -21,7 +22,7 @@ const ViewGallery = () => {
     const [getResponse, setGetResponse] = useState([])
 
     useEffect(()=> {
-        axios.get('http://139.59.17.6/api/project/list')
+        axios.get(`${publicURL}api/project/list`)
         .then(function (response) {
           // handle success
           setAllProjects(response.data.data);
@@ -48,7 +49,7 @@ const ViewGallery = () => {
      
         console.log(deletedItem[0]._id)
 
-        axios.delete(`http://139.59.17.6/api/gallery/${deletedItem[0]._id}`, {
+        axios.delete(`${publicURL}api/gallery/${deletedItem[0]._id}`, {
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             },
@@ -66,13 +67,13 @@ const ViewGallery = () => {
 
       const fetchGalleryImageHandler = () => {
 
-        axios.get(`http://139.59.17.6/api/gallery/project/${project._id}`)
+        axios.get(`${publicURL}api/gallery/project/${project._id}`)
         .then(function (response) {
           // handle success
         
           const projectGalleryFiles = response.data.data.map(file=> ({
             id_: file._id,
-            source: `http://139.59.17.6/${file.filePath}`,
+            source: `${publicURL}${file.filePath}`,
             location: {
               type: 'local'
             }

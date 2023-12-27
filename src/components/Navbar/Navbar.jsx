@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styles from "./Navbar.module.css"
 import {RiMenu2Fill} from "react-icons/ri"
 import { Navigate, useNavigate } from 'react-router-dom'
-import profileicon from "../../assets/icons/profile.png"
+import profileicon from "/assets/icons/profile.png"
 
 const Navbar = (props) => {
   // const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -50,7 +50,7 @@ const overlayClickHandler = () => {
 }
 const logoutHandler = () => {
   localStorage.removeItem('token'); // Remove token from localStorage
-  navigate('/'); // Navigate to the login page
+  navigate('/admin'); // Navigate to the login page
 }
 
 

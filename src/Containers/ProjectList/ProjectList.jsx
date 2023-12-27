@@ -2,13 +2,14 @@ import React,{useEffect, useState} from 'react'
 import ProjectCard from '../../components/Cards/ProjectCard'
 import styles from "./ProjectList.module.css"
 import axios from 'axios'
+import { publicURL } from '../../api/apiConfig'
 
 const ProjectList = () => {
 
   const [allProjects, setAllProjects] = useState([]);
  
   useEffect(()=> {
-    axios.get('http://139.59.17.6/api/project/all/admin', {
+    axios.get(`${publicURL}api/project/all/admin`, {
     })
     .then(function (response) {
       setAllProjects(response.data.data)

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import styles from './EnquiryList.module.css'
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
+import { publicURL } from '../../api/apiConfig';
 
 const EnquiryList = () => {
     const [enquiryData,setEnquiryData] = useState([]);
@@ -25,7 +26,7 @@ const EnquiryList = () => {
     ];
 
     useEffect(() => {
-        axios.get('http://139.59.17.6/api/enquiry')
+        axios.get(`${publicURL}api/enquiry`)
           .then(response => {
            console.log(response.data.data)
            setEnquiryData(response.data.data)
@@ -35,24 +36,7 @@ const EnquiryList = () => {
           });
       }, []);
 
-    
-    // const data = [
-    //     {
-    //         id: 1,
-    //         name: 'Beetlejuice',
-    //         email: 'riturajpathak1998@gmail.com',
-    //         phonenumber: 'Project Related',
-    //         project: "Now is the winter of our discontent Made glorious summer by this sun of York; And all the clouds that lour'd upon our house In the deep bosom of the ocean buried."
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Beetlejuice',
-    //         email: 'riturajpathak1998@gmail.com',
-    //         phonenumber: 'Project Related',
-    //         project: "Now is the winter of our discontent Made glorious summer by this sun of York; And all the clouds that lour'd upon our house In the deep bosom of the ocean buried."
-    //     },
-        
-    // ]
+
 
     const data = enquiryData.map(item => ({
         id: item._id,

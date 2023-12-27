@@ -1,18 +1,19 @@
 import React, {useState} from 'react'
 import styles from "./Cards.module.css"
 import {BsThreeDotsVertical} from "react-icons/bs"
+import { publicURL } from '../../api/apiConfig'
 
 const Cards = (props) => {
-    const [openCard,setOpenCard] = useState(false)
-    const cardSourceHandler = () => {
-        if(openCard){
-            setOpenCard(false)
-        }
-        else{
-            setOpenCard(true)
-        }
+    // const [openCard,setOpenCard] = useState(false)
+    // const cardSourceHandler = () => {
+    //     if(openCard){
+    //         setOpenCard(false)
+    //     }
+    //     else{
+    //         setOpenCard(true)
+    //     }
 
-    }
+    // }
   
   return (
     <div className={styles.card}>

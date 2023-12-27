@@ -1,14 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import styles from "./Dashboard.module.css"
 import Cards from '../../components/Cards/Cards'
-import projecticon from "../../assets/icons/project.png"
-import contacticon from "../../assets/icons/contacts-book.png/"
+import projecticon from "/assets/icons/project.png"
+import contacticon from "/assets/icons/contacts_book.png"
 import axios from 'axios'
+import { publicURL } from '../../api/apiConfig'
 
 const Dashboard = () => {
   const [dashInfo,setDashInfo] = useState({});
   useEffect(()=> {
-    axios.get('http://139.59.17.6/api/home')
+    axios.get(`${publicURL}api/home`)
     .then(function(response){
       setDashInfo(response.data.data)
     })

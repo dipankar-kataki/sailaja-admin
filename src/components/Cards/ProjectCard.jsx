@@ -4,12 +4,14 @@ import { Switch } from '@mui/material'
 import {Button} from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { publicURL } from '../../api/apiConfig'
 const ProjectCard = ({projectInfo}) => {
     const [isChecked, setIsChecked] = useState(projectInfo.isActive);
     const navigate = useNavigate()
 
     const editProjectHandler = () => {
-        navigate('/layout/newproject',{state:{projectInfo}})
+        navigate('/admin/layout/newproject',{state:{projectInfo}})
+   
 
     }
     const projectShowHandler = (e) => {
@@ -17,7 +19,7 @@ const ProjectCard = ({projectInfo}) => {
         setIsChecked(prev=>!prev)
       
         if(isChecked){
-            axios.delete(`http://139.59.17.6/api/project/delete/${projectInfo._id}`, {
+            axios.delete(`${publicURL}api/project/delete/${projectInfo._id}`, {
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             },
@@ -30,7 +32,7 @@ const ProjectCard = ({projectInfo}) => {
 
         }
         else{
-            axios.delete(`http://139.59.17.6/api/project/delete/${projectInfo._id}`, {
+            axios.delete(`${publicURL}api/project/delete/${projectInfo._id}`, {
             headers: {
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             },
@@ -49,7 +51,7 @@ const ProjectCard = ({projectInfo}) => {
   return (
     <div className={styles.projectcard}>
         <div className={styles.projectcard_img}>
-            <img src={`http://139.59.17.6${projectInfo.projectImage}`} alt="projectcard_image" />
+            <img src={`${publicURL}${projectInfo.projectImage}`} alt="projectcard_image" />
         </div>
         <div className={styles.projectcard_body}>
             <div className={styles.projectcard_body_headinfo}>

@@ -1,8 +1,9 @@
 import React, { useState,useEffect } from 'react'
 import "./Login.css"
 import { useNavigate } from 'react-router-dom'
-import logo from "../../assets/logo.png"
+import logo from "/assets/logo.png"
 import Swal from 'sweetalert2'
+import { publicURL } from '../../api/apiConfig'
 
 const Login = () => {
   const [email,setEmail] = useState('');
@@ -46,7 +47,7 @@ const Login = () => {
         LoginSubmitBtn.disabled = true;
         LoginSubmitBtn.innerHTML='Logging in...'
       
-        fetch('http://139.59.17.6/api/admin/login', {
+        fetch(`${publicURL}api/admin/login`, {
           method: 'POST',
           body: JSON.stringify({
             email: email,
@@ -59,7 +60,7 @@ const Login = () => {
           .then((response) => response.json())
           .then((data) => {
             if(data.status==200){
-              navigate('/admin/layout')
+              navigate('/admin/layout/dashboard')
               localStorage.setItem('token', data.token);
               LoginSubmitBtn.disabled = false;
               document.forms['loginForm']['email'].value = '';
@@ -78,7 +79,7 @@ const Login = () => {
 
           })
           .catch((err) => {
-              navigate('/admin/layout/dashboard')
+        
               // console.log(err.message);
               Swal.fire({
                 icon: 'error',

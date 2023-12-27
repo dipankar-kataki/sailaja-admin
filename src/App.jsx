@@ -15,7 +15,6 @@ import ManageTestimonial from './Containers/Testimonial/ManageTestimonial'
 import EnquiryList from "./Containers/EnquiryList/EnquiryList"
 import CreateAmenities from './Containers/Amenities/CreateAmenities'
 import AddAmenities from './Containers/Amenities/AddAmenities'
-import ManageAmenities from './Containers/Amenities/ManageAmenities'
 import Protected from './components/Protected'
 
 function App() {
@@ -40,7 +39,7 @@ function App() {
           <Route path="managetestimonial" element={<ManageTestimonial/>}/>
           <Route path="createamenity" element={<CreateAmenities/>}/>   
           <Route path="addamenity" element={<AddAmenities/>}/> 
-          <Route path="manageamenity" element={<ManageAmenities/>}/> 
+
           
       </Route>
     </Routes>

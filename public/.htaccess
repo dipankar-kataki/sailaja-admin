@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /admin
+    # If the requested resource is not a file or directory,
+    # rewrite the URL to the main entry point (index.html)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /admin/index.html [L]
+</IfModule>

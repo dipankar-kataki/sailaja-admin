@@ -12,6 +12,7 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { publicURL } from '../../api/apiConfig'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,FilePondPluginFileValidateSize)
@@ -24,7 +25,7 @@ const AddGallery = () => {
     const [project,setProject]= useState({})
 
     useEffect(()=> {
-      axios.get('http://139.59.17.6/api/project/list')
+      axios.get(`${publicURL}api/project/list`)
       .then(function (response) {
         // handle success
         setAllProjects(response.data.data);
@@ -45,7 +46,7 @@ const AddGallery = () => {
       }, {});
    
      
-      axios.post(`http://139.59.17.6/api/gallery/${project._id}`, {
+      axios.post(`${publicURL}api/gallery/${project._id}`, {
       ...updatedData
     },
     {

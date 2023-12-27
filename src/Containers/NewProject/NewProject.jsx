@@ -17,6 +17,7 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useLocation } from "react-router-dom";
+import { publicURL } from '../../api/apiConfig'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,FilePondPluginFileValidateSize,FilePondPluginFileEncode)
@@ -55,7 +56,7 @@ const NewProject = () => {
    
     if (formData?.projectImage && files.length === 0) {
       const projectImageFile = {
-        source: `http://139.59.17.6${formData.projectImage}`,
+        source: `${publicURL}${formData.projectImage}`,
         location: {
           type: 'local'
         }
@@ -66,7 +67,7 @@ const NewProject = () => {
   
     if (formData?.projectNoc &&projectNoc.length === 0) {
       const projectPdfFile = { 
-        source:  `http://139.59.17.6/${formData?.projectNoc}`,
+        source:  `${publicURL}${formData?.projectNoc}`,
         location: {
          type: "local"
         }
@@ -75,7 +76,7 @@ const NewProject = () => {
     }
     if (formData?.reraNoc &&reraNoc.length === 0) {
       const reraNocFile = { 
-        source:  `http://139.59.17.6/${formData?.reraNoc}`,
+        source:  `${publicURL}${formData?.reraNoc}`,
         location: {
          type: "local"
         }
@@ -84,7 +85,7 @@ const NewProject = () => {
     }
     if (formData?.brochure &&brochure.length === 0) {
       const brochureFile = { 
-        source:  `http://139.59.17.6/${formData?.brochure}`,
+        source:  `${publicURL}${formData?.brochure}`,
         location: {
          type: "local"
         }
@@ -93,7 +94,7 @@ const NewProject = () => {
     }
     if (formData?.approvedPlan &&approvedPlan.length === 0) {
       const approvedPlanFile = { 
-        source:  `http://139.59.17.6/${formData?.approvedPlan}`,
+        source:  `${publicURL}${formData?.approvedPlan}`,
         location: {
          type: "local"
         }
@@ -210,7 +211,7 @@ const NewProject = () => {
     if(state==null){
       console.log(formData)
     
-    axios.post('http://139.59.17.6/api/project', {
+    axios.post(`${publicURL}api/project`, {
       ...formData,
       
     },
@@ -242,7 +243,7 @@ const NewProject = () => {
   }
   else{
     console.log(formData)
-    axios.put(`http://139.59.17.6/api/project/${state.projectInfo._id}`, {
+    axios.put(`${publicURL}api/project/${state.projectInfo._id}`, {
         ...formData
     },
     {
@@ -259,7 +260,7 @@ const NewProject = () => {
         title: 'Submission Successfully',
         text: 'The project was successfully edited',
       }).then(function() {
-        window.location.href = "/layout/projectlist"
+        window.location.href = "/admin/layout/projectlist"
     })
    
     })
@@ -301,7 +302,7 @@ const NewProject = () => {
                 allowFileEncode={true}
                 onaddfile={handleAddProjectImg}
                
-                // source={`http://139.59.17.6/${formData?.projectInfo?.projectImage}`}
+                // source={`${publicURL}${formData?.projectInfo?.projectImage}`}
               //  src={baserrl+formaData?.projectInfo?.projectImage}
                 labelMaxFileSizeExceeded = "MAXIMUM SIZE EXCEEDED"
                 labelMaxFileSize = "Maximum file size can be 5MB"

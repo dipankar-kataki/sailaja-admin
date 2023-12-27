@@ -12,6 +12,7 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import { TextField, Button } from '@mui/material'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { publicURL } from '../../api/apiConfig';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview,FilePondPluginFileValidateSize,FilePondPluginFileEncode)
 
@@ -39,7 +40,7 @@ const CreateAmenities = () => {
       const handleSubmit = (e) => {
         console.log(amenities)
         e.preventDefault()
-        axios.post('http://139.59.17.6/api/amenity', {
+        axios.post(`${publicURL}api/amenity`, {
             ...amenities,
             
           },

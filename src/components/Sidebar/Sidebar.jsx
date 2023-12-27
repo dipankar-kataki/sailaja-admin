@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import styles from "./Sidebar.module.css"
-import logo from "../../assets/logo.png"
+import logo from "/assets/logo.png"
 import Dropdown from '../Dropdown/Dropdown'
 import {BsFillBuildingFill} from "react-icons/bs"
 import {BiSolidContact} from "react-icons/bi"

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import styles from "./ContactList.module.css"
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
+import { publicURL } from '../../api/apiConfig';
 
 const ContactList = () => {
     const [contactData,setContactData] = useState([]);
@@ -24,27 +25,10 @@ const ContactList = () => {
         },
     ];
    
-    
-    // const data = [
-    //     {
-    //         id: 1,
-    //         name: 'Beetlejuice',
-    //         email: 'riturajpathak1998@gmail.com',
-    //         subject: 'Project Related',
-    //         message: "Now is the winter of our discontent Made glorious summer by this sun of York; And all the clouds that lour'd upon our house In the deep bosom of the ocean buried."
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Beetlejuice',
-    //         email: 'riturajpathak1998@gmail.com',
-    //         subject: 'Project Related',
-    //         message: "Now is the winter of our discontent Made glorious summer by this sun of York; And all the clouds that lour'd upon our house In the deep bosom of the ocean buried."
-    //     },
-        
-    // ]
+
 
     useEffect(() => {
-        axios.get('http://139.59.17.6/api/contact')
+        axios.get(`${publicURL}api/contact`)
           .then(response => {
            console.log(response.data.data)
            setContactData(response.data.data)

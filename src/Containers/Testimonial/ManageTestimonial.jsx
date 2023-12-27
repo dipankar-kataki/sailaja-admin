@@ -3,6 +3,7 @@ import axios from 'axios'
 import styles from "./ManageTestimonial.module.css"
 import {Button} from '@mui/material'
 import Swal from 'sweetalert2'
+import { publicURL } from '../../api/apiConfig'
 
 const ManageTestimonial = () => {
   const [allProjects, setAllProjects] = useState([])
@@ -11,7 +12,7 @@ const ManageTestimonial = () => {
   const [testimony, setTestimony]= useState([])
   const [hasRendered, setHasRendered] = useState(false);
   useEffect(()=> {
-    axios.get('http://139.59.17.6/api/project/list')
+    axios.get(`${publicURL}api/project/list`)
     .then(function (response) {
       // handle success
       setAllProjects(response.data.data);
@@ -27,7 +28,7 @@ const ManageTestimonial = () => {
     if(hasRendered){
     if(isGlobal==true){
     
-    axios.get('http://139.59.17.6/api/testimony?isGlobal=true')
+    axios.get(`${publicURL}api/testimony?isGlobal=true`)
     .then(function (response) {
       setTestimony(response.data.data)   
     })
@@ -36,7 +37,7 @@ const ManageTestimonial = () => {
     })
   }
   else{
-    axios.get(`http://139.59.17.6/api/testimony?projectId=${project._id}&isGlobal=false`)
+    axios.get(`${publicURL}api/testimony?projectId=${project._id}&isGlobal=false`)
     .then(function (response) {
       setTestimony(response.data.data)   
     })
@@ -66,7 +67,7 @@ const ManageTestimonial = () => {
   };
 
   const deleteTestimonyHandler = (id) => {
-    axios.delete(`http://139.59.17.6/api/testimony/${id}`,{
+    axios.delete(`${publicURL}api/testimony/${id}`,{
       headers: {
           'Authorization' : `Bearer ${localStorage.getItem('token')}`
       },
@@ -125,7 +126,7 @@ const ManageTestimonial = () => {
           <div className={styles.testimonial_card} key={test._id}>
           <div className={styles.testimonial_head}>
             <div className={styles.testimonial_img}>
-              <img src={`http://139.59.17.6${test.userImage}`} alt="" />
+              <img src={`${publicURL}${test.userImage}`} alt="" />
             </div>
             <div>
               <h4>{test.name}</h4>
